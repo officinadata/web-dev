@@ -1,0 +1,45 @@
+svg, svg#timeline{
+    height: 100%;
+    width: 100%;
+}
+
+line.event-lines {
+	stroke-dasharray: 5;
+    stroke: indianred;
+    stroke-width: 3px;
+}
+
+.circles {
+    r: 5;
+}
+
+div.events{
+    font-size: x-small;
+    padding: 2px 2px 2px 2px;
+}
+
+.svg-timeline{
+    display:block;
+}
+
+.svg-buttons-div-111{
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    height: 500px;
+    width: 100%;
+}
+
+.svg-buttons-111{
+    opacity: 25%;
+}
+
+.svg-buttons:hover{
+    opacity: 100%;
+    color: red;
+}
+
+b.event-balloon-text-head{
+    color: white;
+    text-decoration: underline;
+}
