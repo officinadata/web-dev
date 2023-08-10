@@ -10,7 +10,7 @@ function Events() {
     <div>
       <h1>Events {id} </h1>
       <h2>DaRe project..</h2>
-      <img src={`data:image/png;base64,${response.encodedImage}`} />
+      <img src={`data:image/png;base64,${response.encodedImage}`} alt="event photo" />
       <div> {response.associations} </div>
       <div> {response.summary} </div>
       <div> {response.timeline} </div>
