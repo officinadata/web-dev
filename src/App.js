@@ -8,6 +8,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom'
 
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 import Home from './pages/Home';
 import Evaluate from "./pages/Evaluate"
@@ -29,6 +30,9 @@ function App({ tooltipOpen, tooltipData, tooltipLeft, tooltipTop, showTooltip, h
         <Route path='/events/:id' element={<Events />} exact />
         <Route path='/reports/:id' element={<Reports />} exact />
       </Routes>
+      <Footer /> 
+
+
     </Router>
 
   );

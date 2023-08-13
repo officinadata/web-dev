@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
 Nav,
 NavLink,
@@ -9,7 +9,8 @@ NavBtnLink,
 } from './NavbarElements';
 
 const Navbar = () => {
-return (
+	const [searchvalue, setSearchvalue] = useState("");
+	return (
 	<>
 	<Nav>
 		<Bars />
@@ -30,6 +31,7 @@ return (
 		</NavLink>
 		{/* Second Nav */}
 		{/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
+		<input type='text' value={searchvalue} onChange={(e) => setSearchvalue(e.target.value)}/>
 		</NavMenu>
 		<NavBtn>
 		<NavBtnLink to='/contribute'>contribute</NavBtnLink>
