@@ -43,7 +43,9 @@ const Contribute = () => {
 									<label htmlFor="subject">Subject</label>
 									<textarea id="subject" name="subject" placeholder="Write something.." style={{height:200+'px'}}></textarea>
 
-									<input type="submit" value="Submit" />
+									<div data-netlify-recaptcha="true"></div>
+
+									<button type="submit" value="Submit" />
 								</form>
 							</div>
 						</div>
