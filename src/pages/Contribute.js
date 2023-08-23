@@ -26,12 +26,8 @@ const Contribute = () => {
 								<h1 className="display-6">Contact Us</h1>
 							</div>
 							<div className="containerContactForm">
-								<form name="contribute" 
-									method="POST"
-									action="/contribute"
-									data-netlify-recaptcha="true"
-									data-netlify="true"
-									>
+								<form name="contribute" method="POST">
+									<input type="hidden" name="form-name" value="contribute" />
 									<label htmlFor="fname">First Name</label>
 									<input type="text" id="fname" name="firstname" required placeholder="Your name.." />
 

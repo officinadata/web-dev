@@ -53,6 +53,18 @@
     </div>
     <!-- Spinner End -->
     
+    <form name="contribute" data-netlify-recaptcha="true" data-netlify="true" hidden>
+									<input type="text" name="firstname" />
+									<input type="text" name="lastname" />
+									<select name="country">
+										<option value="new zealand">New Zealand</option>
+										<option value="australia">Australia</option>
+										<option value="other">Other</option>
+									</select>
+									<textarea name="subject"></textarea>
+									<div data-netlify-recaptcha="true"></div>
+								</form>
+
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
