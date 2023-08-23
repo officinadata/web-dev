@@ -26,8 +26,8 @@ const Contribute = () => {
 								<h1 className="display-6">Contact Us</h1>
 							</div>
 							<div className="containerContactForm">
-								<form name="contribute" method="POST" data-netlify-recaptcha="true" netlify>
-									<input type="hidden" name="form-name" value="contribute" />
+								<form name="contribute" action="/action_page.php" >
+									
 									<label htmlFor="fname">First Name</label>
 									<input type="text" id="fname" name="firstname" required placeholder="Your name.." />
 
@@ -48,6 +48,7 @@ const Contribute = () => {
 									<textarea id="subject" name="subject" required placeholder="Write something.." style={{height:200+'px'}}></textarea>
 
 									<button type="submit" >Submit</button>
+									
 								</form>
 							</div>
 						</div>
