@@ -28,24 +28,25 @@ const Contribute = () => {
 							<div className="containerContactForm">
 								<form name="contribute" 
 									method="POST"
+									action="/contribute"
 									data-netlify-recaptcha="true"
 									data-netlify="true"
 									>
 									<label htmlFor="fname">First Name</label>
-									<input type="text" id="fname" name="firstname" placeholder="Your name.." />
+									<input type="text" id="fname" name="firstname" required placeholder="Your name.." />
 
 									<label htmlFor="lname">Last Name</label>
-									<input type="text" id="lname" name="lastname" placeholder="Your last name.." />
+									<input type="text" id="lname" name="lastname" required placeholder="Your last name.." />
 
 									<label htmlFor="country">Country</label>
 									<select id="country" name="country">
-									<option value="australia">Australia</option>
-									<option value="canada">Canada</option>
-									<option value="usa">USA</option>
+										<option value="new zealand">New Zealand</option>
+										<option value="australia">Australia</option>
+										<option value="other">Other</option>
 									</select>
 
 									<label htmlFor="subject">Subject</label>
-									<textarea id="subject" name="subject" placeholder="Write something.." style={{height:200+'px'}}></textarea>
+									<textarea id="subject" name="subject" required placeholder="Write something.." style={{height:200+'px'}}></textarea>
 
 									<div data-netlify-recaptcha="true"></div>
 
