@@ -34,6 +34,9 @@ const Contribute = () => {
 									<label htmlFor="lname">Last Name</label>
 									<input type="text" id="lname" name="lastname" required placeholder="Your last name.." />
 
+									<label htmlFor="email">E-mail</label>
+									<input type="email" id="email" name="email" required placeholder="Your e-mail.." />
+
 									<label htmlFor="country">Country</label>
 									<select id="country" name="country">
 										<option value="new zealand">New Zealand</option>
@@ -43,8 +46,6 @@ const Contribute = () => {
 
 									<label htmlFor="subject">Subject</label>
 									<textarea id="subject" name="subject" required placeholder="Write something.." style={{height:200+'px'}}></textarea>
-
-									<div data-netlify-recaptcha="true"></div>
 
 									<button type="submit" >Submit</button>
 								</form>
