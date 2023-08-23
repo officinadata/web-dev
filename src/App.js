@@ -8,7 +8,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom'
 
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
 
 import Home from './pages/Home';
 import Evaluate from "./pages/Evaluate"
@@ -20,20 +19,18 @@ import Reports from "./pages/Reports"
 function App({ tooltipOpen, tooltipData, tooltipLeft, tooltipTop, showTooltip, hideTooltip }) {
   return (
 
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/about' element={<About />} exact />
-        <Route path='/evaluate' element={<Evaluate />} exact />
-        <Route path='/contribute' element={<Contribute />} exact />
-        <Route path='/events/:id' element={<Events />} exact />
-        <Route path='/reports/:id' element={<Reports />} exact />
-      </Routes>
-      <Footer /> 
-
-
-    </Router>
+      <Router>
+      
+        {/*<Navbar />*/}
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/about' element={<About />} exact />
+          <Route path='/evaluate' element={<Evaluate />} exact />
+          <Route path='/contribute' element={<Contribute />} exact />
+          <Route path='/events/:id' element={<Events />} exact />
+          <Route path='/reports/:id' element={<Reports />} exact />
+        </Routes>
+      </Router>
 
   );
 }

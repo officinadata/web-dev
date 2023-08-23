@@ -9,7 +9,7 @@ function Reports() {
     <div>
       <h1>Reports {id}  </h1>
       <h2>DaRe project..</h2>
-      <img src={`data:image/png;base64,${response.encodedImage}`} alt='report image' />
+      <img src={`data:image/png;base64,${response.encodedImage}`} />
       <div> {response.associations} </div>
       <div> {response.summary} </div>
       <div> {response.timeline} </div>
