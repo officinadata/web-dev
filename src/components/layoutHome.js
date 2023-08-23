@@ -6,7 +6,7 @@ export default function Layout({ children }) {
     <div className="container-fluid bg-white sticky-top">
         <div className="container">
             <nav className="navbar navbar-expand-lg bg-white navbar-light py-2 py-lg-0">
-                <a href="index.html" className="navbar-brand">
+                <a href="/" className="navbar-brand">
                     <img className="img-fluid" src="img/logo.png" alt="Logo" />
                 </a>
                 <button type="button" className="navbar-toggler ms-auto me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
