@@ -1,6 +1,16 @@
 import React from "react";
+import "./SearchBox.css";
 
-export default function Layout({ children }) {
+export default function Layout({ children, setMessage, change }) {
+    const onButtonClick=(changeValue)=>{
+        setMessage(changeValue)
+    };
+
+    const handleExpand = () => {
+        const search = document.querySelector(".search-input");
+        search.classList.toggle("search-expanded");
+    };
+
   return (
     <>
     <div className="container-fluid bg-white sticky-top">
@@ -19,8 +29,10 @@ export default function Layout({ children }) {
                         <a href="/evaluate" className="nav-item nav-link">Evaluate</a>
                         <a href="/contribute" className="nav-item nav-link">Contribute</a>
                     </div>
-                    <div className="border-start ps-4 d-none d-lg-block">
-                        <button type="button" className="btn btn-sm p-0"><i className="fa fa-search"></i></button>
+                    <div className="border-start ps-4 d-none d-lg-block container-search">
+                        <button type="button" className="btn btn-sm p-0 search-wrapper"  onClick={handleExpand}><i className="fa fa-search"></i></button>
+                        <input className="search-input" type="search" placeholder="Search here" onChange={change} />
+
                     </div>
                 </div>
             </nav>

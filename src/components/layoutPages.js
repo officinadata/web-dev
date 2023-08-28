@@ -19,9 +19,9 @@ export default function LayoutInner({ children }) {
                         <a href="/evaluate" className="nav-item nav-link">Evaluate</a>
                         <a href="/contribute" className="nav-item nav-link">Contribute</a>
                     </div>
-                    <div className="border-start ps-4 d-none d-lg-block">
+                    {/*<div className="border-start ps-4 d-none d-lg-block">
                         <button type="button" className="btn btn-sm p-0"><i className="fa fa-search"></i></button>
-                    </div>
+                      </div>*/}
                 </div>
             </nav>
         </div>
