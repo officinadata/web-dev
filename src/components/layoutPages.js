@@ -1,4 +1,5 @@
 import React from "react";
+import Search from "./Search";
 
 export default function LayoutInner({ children }) {
   return (
@@ -9,6 +10,9 @@ export default function LayoutInner({ children }) {
                 <a href="/" className="navbar-brand">
                     <img className="img-fluid" src="img/logo.png" alt="Logo" />
                 </a>
+                <div className="navbar-toggler ms-auto me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <Search />
+                </div>
                 <button type="button" className="navbar-toggler ms-auto me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -20,7 +24,7 @@ export default function LayoutInner({ children }) {
                         <a href="/contribute" className="nav-item nav-link">Contribute</a>
                     </div>
                     <div className="border-start ps-4 d-none d-lg-block">
-                        <button type="button" className="btn btn-sm p-0"><i className="fa fa-search"></i></button>
+                        <Search />
                     </div>
                 </div>
             </nav>

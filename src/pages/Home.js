@@ -220,7 +220,7 @@ const randomColor = Math.floor(Math.random()*16777215).toString(16);
                     index = {index}
                     lastIndex = {8}
                     textTitle={event.title}
-                    textSummary={response.summary}
+                    textSummary={response[0].summary}
                     
                 />
               </a>
