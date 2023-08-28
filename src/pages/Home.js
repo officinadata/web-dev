@@ -191,10 +191,10 @@ const randomColor = Math.floor(Math.random()*16777215).toString(16);
             return (
 
               <g key={i}>
-{/*              <line className='ticks' x1={x} y1={height / 2} x2={x} y2={height / 2 + 10} stroke="black" strokeWidth={25} />*/}
               <line className='ticks' x1={x} y1={height / 2} x2={x1} y2={height / 2} stroke={colorArray[i]} strokeWidth={25} />
+              <line className='ticks' x1={x} y1={height / 2 - 12} x2={x} y2={height / 2 + 12} stroke="black" strokeWidth={2} />
 
-              <text x={x} y={height / 2 + 20} textAnchor="middle" fontSize={10}>
+              <text x={x} y={height / 2 + 30} textAnchor="middle" fontSize={24}>
                  {year}
               </text>
                </g>
@@ -207,8 +207,9 @@ const randomColor = Math.floor(Math.random()*16777215).toString(16);
           events.map((event, index) => (
 
             <g key={index}>
-
+              <a href={"/reports/"+event.title}>
               <ChartComp 
+                    
                     fill="forestgreen" 
                     x={xScale(event.x) - 75} 
                     y={height / 2} width={100} height={75} 
@@ -222,7 +223,7 @@ const randomColor = Math.floor(Math.random()*16777215).toString(16);
                     textSummary={response.summary}
                     
                 />
-
+              </a>
               <Circle className={index==8 ? 'hidden' : 'circles'} 
               onClick={() => {
                 if ( event.category === 'A' )
@@ -234,7 +235,8 @@ const randomColor = Math.floor(Math.random()*16777215).toString(16);
                 }
               }}
                 cx={xScale(event.x)}
-                cy={(height / 2) + pointOffset(event.category)}
+//                cy={(height / 2) + pointOffset(event.category)}
+                  cy={(height / 2)}
                 r={6}
                 fill={pointColor(event.category)}
                 onMouseMove={(event) => {
