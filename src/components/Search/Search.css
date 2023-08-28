@@ -1,0 +1,26 @@
+.searchSelectInput {
+    width: 94px;
+}
+
+.searchTextInput {
+    width: 120px !important;
+    height: 100% !important;
+    margin: 0px !important; 
+}
+
+.searchDateInput {
+    width: 120px !important;    
+    height: 100% !important;
+}
+
+.searchParent {
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.searchParentExpanded {
+    width: 400px;
+}

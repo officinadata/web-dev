@@ -10,11 +10,11 @@ function Events() {
     <div>
       <h1>Events {id} </h1>
       <h2>DaRe project..</h2>
-      <img src={`data:image/png;base64,${response.encodedImage}`} />
-      <div> {response.associations} </div>
-      <div> {response.summary} </div>
-      <div> {response.timeline} </div>
-      <div> {response.wordCloud} </div> 
+      <img src={`data:image/png;base64,${response[0].encodedImage}`} />
+      <div> {response[0].associations} </div>
+      <div> {response[0].summary} </div>
+      <div> {response[0].timeline} </div>
+      <div> {response[0].wordCloud} </div> 
     </div>
   );
 }

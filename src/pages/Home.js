@@ -21,14 +21,12 @@ let lastX = 0;
 
 const margin = { top: 20, right: 20, bottom: 20, left: 20 };
 
-function Home({ tooltipOpen, tooltipData, tooltipLeft, 
-                tooltipTop, showTooltip, hideTooltip }) {
+function Home({ tooltipOpen, tooltipData, tooltipLeft, tooltipTop, showTooltip, hideTooltip }) {
   const xMin = new Date('2018-01-01');
   const xMax = new Date('2023-12-31');
 
   const [xDomain, setXDomain] = useState([xMin, xMax]);
   const [events, setEvents] = useState([]);
-  const [filteredEvents, setFilteredEvents] = useState([]); // New state for filtered events
 
   const navigate = useNavigate();
 
@@ -44,38 +42,9 @@ function Home({ tooltipOpen, tooltipData, tooltipLeft,
         }))
       );
       events.pop();
-      filteredEvents.pop();
     };
     fetchEvents();
-//    setFilteredEvents(events);
-
   }, []);
-
-  /**
-   * Handeling search for filtering the events
-   */
-
-  // initially add all events to the 'filteredEvents'
-  useEffect(() => {
-    setFilteredEvents(events);
-  }, [events]);
-
-  const handleChange = (e) => {
-    e.preventDefault();
-    const input = e.target.value;
-
-    if (input.length > 0) {
-        const filtered = events.filter((event) =>
-          event.title.toLowerCase().includes(input.toLowerCase())
-        );
-        setFilteredEvents(filtered); // Update filtered countries
-        console.log(input);
-      } else {
-        setFilteredEvents(events); // Clear filtered countries when input is empty
-      }
-
-  };
-  /** search/filtering ended */
 
   const xScale = scaleTime({
     domain: xDomain,
@@ -185,7 +154,7 @@ function Home({ tooltipOpen, tooltipData, tooltipLeft,
   };
 
   return (
-    <Layout change = {handleChange} >
+    <Layout>
     <div className="App" onWheel={onWheel}>
 
       <div className='svg-buttons-div'>
@@ -235,9 +204,8 @@ const randomColor = Math.floor(Math.random()*16777215).toString(16);
           <line className='ticks' x1={20} y1={height / 2} x2={firstX} y2={height / 2} stroke="yellow" strokeWidth={25} />
           <line className='ticks' x1={lastX} y1={height / 2} x2="99%" y2={height / 2} stroke="green" strokeWidth={25} />
           {
-//        events.map((event, index) => (
-          filteredEvents.map((event, index) => (
-            
+          events.map((event, index) => (
+
             <g key={index}>
               <a href={"/reports/"+event.title}>
               <ChartComp 
@@ -252,7 +220,7 @@ const randomColor = Math.floor(Math.random()*16777215).toString(16);
                     index = {index}
                     lastIndex = {8}
                     textTitle={event.title}
-                    textSummary={response.summary}
+                    textSummary={response[0].summary}
                     
                 />
               </a>

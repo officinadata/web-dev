@@ -1,16 +1,8 @@
 import React from "react";
-import "./SearchBox.css";
 
-export default function Layout({ children, setMessage, change }) {
-    const onButtonClick=(changeValue)=>{
-        setMessage(changeValue)
-    };
+import Search from "./Search";
 
-    const handleExpand = () => {
-        const search = document.querySelector(".search-input");
-        search.classList.toggle("search-expanded");
-    };
-
+export default function Layout({ children }) {
   return (
     <>
     <div className="container-fluid bg-white sticky-top">
@@ -19,6 +11,9 @@ export default function Layout({ children, setMessage, change }) {
                 <a href="/" className="navbar-brand">
                     <img className="img-fluid" src="img/logo.png" alt="Logo" />
                 </a>
+                <div className="navbar-toggler ms-auto me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <Search />
+                </div>
                 <button type="button" className="navbar-toggler ms-auto me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -29,10 +24,8 @@ export default function Layout({ children, setMessage, change }) {
                         <a href="/evaluate" className="nav-item nav-link">Evaluate</a>
                         <a href="/contribute" className="nav-item nav-link">Contribute</a>
                     </div>
-                    <div className="border-start ps-4 d-none d-lg-block container-search">
-                        <button type="button" className="btn btn-sm p-0 search-wrapper"  onClick={handleExpand}><i className="fa fa-search"></i></button>
-                        <input className="search-input" type="search" placeholder="Search here" onChange={change} />
-
+                    <div className="border-start ps-4 d-none d-lg-block">
+                        <Search />
                     </div>
                 </div>
             </nav>
