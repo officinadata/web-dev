@@ -24,3 +24,22 @@
 .searchParentExpanded {
     width: 400px;
 }
+@media only screen and (max-width: 600px) {
+
+    .searchParent {
+        justify-content: left;
+        margin-left: 25px;
+    }
+
+    .searchParentExpanded {
+        margin-top: 100px;
+        width: max-content;
+        margin-left: 0px !important;
+    }
+
+    .searchDateInput, .searchTextInput {
+        width: 98px !important;
+     }
+
+
+  }
