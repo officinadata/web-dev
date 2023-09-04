@@ -5,14 +5,16 @@ import { Group } from '@visx/group';
 import { Circle } from '@visx/shape';
 import { scaleTime } from '@visx/scale';
 import { TooltipWithBounds, withTooltip } from '@visx/tooltip';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
+import Papa from 'papaparse';
 
 import './Home.css';
 import Layout from '../components/layoutHome';
 
 import ChartComp  from '../components/svg/componentSVG';
 
-import response from '../assets/response.json';
+//import response from '../assets/response.json';
+import csvFile from '../assets/csv_output.csv';
 
 const width = 1048;
 const height = 400;
@@ -27,6 +29,7 @@ function Home({ tooltipOpen, tooltipData, tooltipLeft, tooltipTop, showTooltip, 
 
   const [xDomain, setXDomain] = useState([xMin, xMax]);
   const [events, setEvents] = useState([]);
+  const [csvResults, setCsvResults] = useState([]);
 
   const navigate = useNavigate();
 
@@ -43,7 +46,19 @@ function Home({ tooltipOpen, tooltipData, tooltipLeft, tooltipTop, showTooltip, 
       );
       events.pop();
     };
+    
+    const fetchCSV = async () => {
+      Papa.parse(csvFile, {
+        download: true,
+        header: true,
+        skipEmptyLines: true,
+        delimiter: ',',
+        complete: (results) => setCsvResults(results.data)  
+      });
+    } 
+
     fetchEvents();
+    fetchCSV();
   }, []);
 
   const xScale = scaleTime({
@@ -142,8 +157,6 @@ function Home({ tooltipOpen, tooltipData, tooltipLeft, tooltipTop, showTooltip, 
     setXDomain(newXDomain);
   };
   
-
-  
     
   const pointColor = (category) => {
     return category === 'A' ? 'blue' : 'red';
@@ -207,7 +220,7 @@ const randomColor = Math.floor(Math.random()*16777215).toString(16);
           events.map((event, index) => (
 
             <g key={index}>
-              <a href={"/reports/"+event.title}>
+              <NavLink to={"/reports/"+event.title} state={csvResults[0]}>
               <ChartComp 
                     
                     fill="forestgreen" 
@@ -220,18 +233,18 @@ const randomColor = Math.floor(Math.random()*16777215).toString(16);
                     index = {index}
                     lastIndex = {8}
                     textTitle={event.title}
-                    textSummary={response[0].summary}
+                    textSummary={csvResults[0].Summary}
                     
                 />
-              </a>
+              </NavLink>
               <Circle className={index==8 ? 'hidden' : 'circles'} 
               onClick={() => {
                 if ( event.category === 'A' )
                 {
-                  navigate(`/reports/${event.title}`)
+                  navigate(`/reports/${event.title}`, {state: csvResults[0]})
                 }
                 else {
-                  navigate(`/events/${event.title}`)
+                  navigate(`/events/${event.title}`, {state: csvResults[0]})
                 }
               }}
                 cx={xScale(event.x)}

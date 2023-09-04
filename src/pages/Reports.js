@@ -1,19 +1,23 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
-import response from '../assets/response.json';
+const Reports = () => {
+  const { id } = useParams();
+  const location = useLocation();
+  const report = location.state;
 
-function Reports() {
-    const { id } = useParams();
   return (
     <div>
-      <h1>Reports {id}  </h1>
+      <h1>{report.Title} </h1>
       <h2>DaRe project..</h2>
-      <img src={`data:image/png;base64,${response[0].encodedImage}`} />
-      <div> {response[0].associations} </div>
-      <div> {response[0].summary} </div>
-      <div> {response[0].timeline} </div>
-      <div> {response[0].wordCloud} </div>
+      {/* <img src={`data:image/png;base64,${response[0].encodedImage}`} /> */}
+      <div> {report.Author} </div>
+      <div> {report['File Name']} </div>
+      <div> {report.Summary} </div>
+      <div> {report['Created Date']} </div>
+      <div> {report.Keywords} </div>
+      <div> {report.Pages} </div>
+      <div> {report.Size} </div>
     </div>
   );
 }
