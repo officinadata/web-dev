@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { csv } from 'd3';
 import { ticks } from 'd3-array';
 import { Group } from '@visx/group';
@@ -6,15 +6,11 @@ import { Circle } from '@visx/shape';
 import { scaleTime } from '@visx/scale';
 import { TooltipWithBounds, withTooltip } from '@visx/tooltip';
 import { useNavigate, NavLink } from "react-router-dom";
-import Papa from 'papaparse';
 
 import './Home.css';
 import Layout from '../components/layoutHome';
 
 import ChartComp  from '../components/svg/componentSVG';
-
-//import response from '../assets/response.json';
-import csvFile from '../assets/csv_output.csv';
 
 const width = 1048;
 const height = 400;
@@ -29,13 +25,13 @@ function Home({ tooltipOpen, tooltipData, tooltipLeft, tooltipTop, showTooltip, 
 
   const [xDomain, setXDomain] = useState([xMin, xMax]);
   const [events, setEvents] = useState([]);
-  const [csvResults, setCsvResults] = useState([]);
 
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
   useEffect(() => {
     const fetchEvents = async () => {
-      const data = await csv(process.env.PUBLIC_URL + './all_events.csv');
+      const data = await csv(process.env.PUBLIC_URL + './csv_output.csv');
+
       setEvents(
         data.map((d) => ({
           x: new Date(d.date),
@@ -45,20 +41,10 @@ function Home({ tooltipOpen, tooltipData, tooltipLeft, tooltipTop, showTooltip, 
         }))
       );
       events.pop();
+
     };
-    
-    const fetchCSV = async () => {
-      Papa.parse(csvFile, {
-        download: true,
-        header: true,
-        skipEmptyLines: true,
-        delimiter: ',',
-        complete: (results) => setCsvResults(results.data)  
-      });
-    } 
 
     fetchEvents();
-    fetchCSV();
   }, []);
 
   const xScale = scaleTime({
@@ -67,6 +53,8 @@ function Home({ tooltipOpen, tooltipData, tooltipLeft, tooltipTop, showTooltip, 
   });
   
   
+  const timer = useRef(null);
+
   const moveTimeWindow = (direction) => {
     const moveByDays = 30;
     const minDate = new Date("2018-01-01");
@@ -87,8 +75,14 @@ function Home({ tooltipOpen, tooltipData, tooltipLeft, tooltipTop, showTooltip, 
     if (movedDomain[0] >= minDate && movedDomain[1] <= maxDate) {
       setXDomain(movedDomain);
     }
+
+    if (timer.current) clearTimeout(timer.current);
+    timer.current = setTimeout(() => {moveTimeWindow(direction)}, 500);
   };
 
+  const stopTimer = () => {
+    clearTimeout(timer.current);
+   }
 
   /**
    * 
@@ -162,17 +156,12 @@ function Home({ tooltipOpen, tooltipData, tooltipLeft, tooltipTop, showTooltip, 
     return category === 'A' ? 'blue' : 'red';
   };
 
-  const pointOffset = (category) => {
-    return category === 'A' ? 3.0 : -3.0;
-  };
-
   return (
     <Layout>
     <div className="App" onWheel={onWheel}>
-
       <div className='svg-buttons-div'>
-        <button className='svg-buttons' onClick={() => moveTimeWindow(-1)}>Move Left</button>
-        <button className='svg-buttons' onClick={() => moveTimeWindow(1)}>Move Right</button>
+        <button className='svg-buttons' onMouseDown={() => moveTimeWindow(-1)} onMouseUp={stopTimer}>Move Left</button>
+        <button className='svg-buttons' onMouseDown={() => moveTimeWindow(1) } onMouseUp={stopTimer} >Move Right</button>
         <button className='svg-buttons' onClick={() => resetTimeWindow(1)}>Reset</button>
       </div>
 
@@ -220,7 +209,7 @@ const randomColor = Math.floor(Math.random()*16777215).toString(16);
           events.map((event, index) => (
 
             <g key={index}>
-              <NavLink to={"/reports/"+event.title} state={csvResults[0]}>
+              <NavLink to={"/reports/"+event.title} state={events[0]}>
               <ChartComp 
                     
                     fill="forestgreen" 
@@ -233,7 +222,7 @@ const randomColor = Math.floor(Math.random()*16777215).toString(16);
                     index = {index}
                     lastIndex = {8}
                     textTitle={event.title}
-                    textSummary={csvResults[0].Summary}
+                    textSummary={events[0].summary}
                     
                 />
               </NavLink>
@@ -241,10 +230,10 @@ const randomColor = Math.floor(Math.random()*16777215).toString(16);
               onClick={() => {
                 if ( event.category === 'A' )
                 {
-                  navigate(`/reports/${event.title}`, {state: csvResults[0]})
+                  navigate(`/reports/${event.Title}`, {state: events[0]})
                 }
                 else {
-                  navigate(`/events/${event.title}`, {state: csvResults[0]})
+                  navigate(`/events/${event.Title}`, {state: events[0]})
                 }
               }}
                 cx={xScale(event.x)}

@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-
+import { csv } from 'd3';
 import dayjs from "dayjs";
 import isBetween from "dayjs/plugin/isBetween";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 
 import "./Search.css";
-// import response from "../../assets/response.json"; 
-import csvFile from "../../assets/csv_output.csv";
-import Papa from 'papaparse';
 
 dayjs.extend(isBetween);
 dayjs.extend(customParseFormat);
@@ -20,16 +17,14 @@ const Search = () => {
   const [csvResults, setCsvResults] = useState([]);
 
   useEffect(() => {
-    const fetchCSV = async () => {
-      Papa.parse(csvFile, {
-        download: true,
-        header: true,
-        skipEmptyLines: true,
-        delimiter: ",",
-        complete: (results) => setCsvResults(results.data),
-      });
+
+    const fetchEvents = async () => {
+      const data = await csv(process.env.PUBLIC_URL + './csv_output.csv');
+
+      setCsvResults(data);
+
     };
-    fetchCSV();
+
   }, []);
 
   return (
