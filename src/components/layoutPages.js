@@ -39,7 +39,7 @@ export default function LayoutInner({ children }) {
         <div className="container">
             <div className="row">
                 <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a className="fw-medium" href="#">DaRe Project</a>, All Right Reserved.
+                    &copy; <a className="fw-medium" href="/">DaRe Project</a>, All Right Reserved.
                 </div>
                 <div className="col-md-6 text-center text-md-end">
                     Designed By Dev team @ DaRe project.

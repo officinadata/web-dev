@@ -7,6 +7,7 @@ import { scaleTime } from '@visx/scale';
 import { TooltipWithBounds, withTooltip } from '@visx/tooltip';
 import { useNavigate, NavLink } from "react-router-dom";
 
+import Event from './Event';
 import './Home.css';
 import Layout from '../components/layoutHome';
 
@@ -25,8 +26,9 @@ function Home({ tooltipOpen, tooltipData, tooltipLeft, tooltipTop, showTooltip, 
 
   const [xDomain, setXDomain] = useState([xMin, xMax]);
   const [events, setEvents] = useState([]);
+  const [currentEvent, setCurrentEvent] = useState(null);
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -36,12 +38,16 @@ function Home({ tooltipOpen, tooltipData, tooltipLeft, tooltipTop, showTooltip, 
         data.map((d) => ({
           x: new Date(d.date),
           y: 0,
-          category: d.category,
           title: d.title,
+          author: d.author,
+          summary: d.summary,
+          category: d.category,
+          pages: d.pages,
+          size: d.size,
+          keywords: d.keywords
         }))
       );
       events.pop();
-
     };
 
     fetchEvents();
@@ -51,7 +57,6 @@ function Home({ tooltipOpen, tooltipData, tooltipLeft, tooltipTop, showTooltip, 
     domain: xDomain,
     range: [margin.left, width - margin.right],
   });
-  
   
   const timer = useRef(null);
 
@@ -100,7 +105,7 @@ function Home({ tooltipOpen, tooltipData, tooltipLeft, tooltipTop, showTooltip, 
 
   const onWheel = (event) => {
 //    event.preventDefault();
-    const minZoomFactor = 1.25;
+//    const minZoomFactor = 1.25;
 
     const zoomFactor = 1 - event.deltaY * 0.001;
     const pointerX = event.clientX;
@@ -187,7 +192,7 @@ const colorArray = [
 '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933',
 '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3', 
 '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'];
-const randomColor = Math.floor(Math.random()*16777215).toString(16);
+//const randomColor = Math.floor(Math.random()*16777215).toString(16);
 
 
             return (
@@ -209,7 +214,7 @@ const randomColor = Math.floor(Math.random()*16777215).toString(16);
           events.map((event, index) => (
 
             <g key={index}>
-              <NavLink to={"/reports/"+event.title} state={events[0]}>
+              {/*<NavLink to={"/reports/"+event.title} state={events[0]}>*/}
               <ChartComp 
                     
                     fill="forestgreen" 
@@ -223,10 +228,12 @@ const randomColor = Math.floor(Math.random()*16777215).toString(16);
                     lastIndex = {8}
                     textTitle={event.title}
                     textSummary={events[0].summary}
+
+                    currEvent = {setCurrentEvent}
                     
                 />
-              </NavLink>
-              <Circle className={index==8 ? 'hidden' : 'circles'} 
+              {/*</NavLink>*/}
+              <Circle className={index === 8 ? 'hidden' : 'circles'} 
               onClick={() => {
                 if ( event.category === 'A' )
                 {
@@ -273,6 +280,21 @@ const randomColor = Math.floor(Math.random()*16777215).toString(16);
           {tooltipData}
         </TooltipWithBounds>
       )}
+    </div>
+
+    <div className='current-event-display'>
+      {currentEvent != null
+      ? <Event event={
+        {
+          title : events[currentEvent].title,
+          author: events[currentEvent].author,
+          summary: events[currentEvent].summary,
+          keywords: events[currentEvent].keywords,
+          pages: events[currentEvent].pages,
+          size: events[currentEvent].size,
+        }} /> 
+      : ""
+      }
     </div>
     </Layout>
   );

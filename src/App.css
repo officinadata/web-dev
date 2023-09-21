@@ -54,3 +54,7 @@
   font-size: 14px;
   line-height: 1.5;
 }
+
+.event-balloon-content{
+  cursor: pointer;
+}

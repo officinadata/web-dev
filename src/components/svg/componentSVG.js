@@ -4,7 +4,7 @@ const componentSVG = (
     { index, lastIndex, textTitle, textSummary, 
       fill, stroke, strokeWidth, 
       x, y, x1, y1, x2, y2,
-      width, height
+      width, height, currEvent
     }
  ) => {
   const isOdd = number => number % 2 !== 0;
@@ -18,14 +18,13 @@ const componentSVG = (
  
   if(index === lastIndex) return (<g/>);
 
-  
   return (
-    <g  myindex={index}>
+    <g  myindex={index} onClick={(e)=>{e.preventDefault();currEvent(index);}}>
       <g transform={isOdd(index)?"translate(-50, 0)":"translate(-50, -75)"}>
         {<rect x={x2} y={y2} width={width} height={height} fill={fill} rx={10} ry={10} />}
         {<polygon points={isOdd(index) ? (x2+40)+","+(y2)+","+(x2+40+20)+","+(y2)+","+(x2+40+10)+","+(y2-10) : (x2+40)+","+(y2+85-10)+","+(x2+40+20)+","+(y2+85-10)+","+(x2+40+10)+","+(y2+85) } fill={fill} />}
 
-        <foreignObject x={x2} y={y2} width={width} height={height}>
+        <foreignObject x={x2} y={y2} width={width} height={height} className="event-balloon-content">
           <div className="events">
             <b className="event-balloon-text-head">{textTitle}</b>
             <br />

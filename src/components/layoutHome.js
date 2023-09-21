@@ -1,8 +1,11 @@
-import React from "react";
+import React, {Children} from "react";
 
 import Search from "./Search";
 
 export default function Layout({ children }) {
+
+  const result = Children.toArray(children);
+
   return (
     <>
     <div className="container-fluid bg-white sticky-top">
@@ -36,11 +39,11 @@ export default function Layout({ children }) {
       <div id="header-carousel" className="carousel slide carousel-fade" data-bs-ride="carousel">
         <div className="carousel-inner">
             <div className="carousel-item active" style={{height: 600+'px'}}>
-                <img className="w-100" src="img/carousel-1.jpg" alt="Image" />
+                <img className="w-100" src="img/carousel-1.jpg" alt="" />
                 <div className="carousel-caption">
                     <div className="container">
                         <div className="row justify-content-center">
-                        <main>{children}</main>
+                        <main>{result[0]}</main>
                         </div>
                     </div>
                 </div>
@@ -49,11 +52,21 @@ export default function Layout({ children }) {
       </div>
     </div>
     
+    <div className="container-xxl py-5">
+        <div className="container">
+            <div className="row g-5">
+                <div className="col-lg-12 wow fadeIn" data-wow-delay="0.5s">
+                    <main>{result[1]}</main>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div className="container-fluid copyright py-4">
         <div className="container">
             <div className="row">
                 <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a className="fw-medium" href="#">DaRe Project</a>, All Right Reserved.
+                    &copy; <a className="fw-medium" href="/">DaRe Project</a>, All Right Reserved.
                 </div>
                 <div className="col-md-6 text-center text-md-end">
                     Designed By Dev team @ DaRe project.

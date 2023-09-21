@@ -24,7 +24,7 @@ const Search = () => {
       setCsvResults(data);
 
     };
-
+    fetchEvents();
   }, []);
 
   return (

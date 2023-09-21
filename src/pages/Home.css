@@ -39,7 +39,7 @@ div.events{
 }
 
 .svg-buttons:hover{
-    opacity: 100%;
+    opacity: 75%;
     color: red;
 }
 
