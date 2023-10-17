@@ -20,7 +20,6 @@ const Search = () => {
 
     const fetchEvents = async () => {
       const data = await csv(process.env.PUBLIC_URL + './csv_output.csv');
-
       setCsvResults(data);
 
     };
@@ -57,10 +56,10 @@ const Search = () => {
         onClick={() => {
           let search = searchText.toLowerCase();
           let result = csvResults.filter((e) =>
-            e.Summary.toLowerCase().includes(search) || e.Keywords.includes(search)
+            e.summary.toLowerCase().includes(search) || e.keywords.includes(search)
           );
           result = result.filter((e) =>
-            dayjs(e["Created Date"].substring(0, 10), "DD/MM/YYYY").isBetween(
+            dayjs(e["date"].substring(0, 10), "DD/MM/YYYY").isBetween(
               startDate,
               endDate,
               null,
