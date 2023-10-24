@@ -58,37 +58,6 @@ function Home({ tooltipOpen, tooltipData, tooltipLeft, tooltipTop, showTooltip, 
     range: [margin.left, width - margin.right],
   });
   
-  const timer = useRef(null);
-
-  const moveTimeWindow = (direction) => {
-    const moveByDays = 30;
-    const minDate = new Date("2018-01-01");
-    const maxDate = new Date("2024-01-01");
-    
-    const movedDomain = xDomain.map((date) => {
-      const newDate = new Date(date.valueOf());
-      newDate.setDate(date.getDate() + direction * moveByDays);
-  
-      if (newDate < minDate || newDate > maxDate) {
-        return date;
-      }
-  
-      return newDate;
-    });
-  
-    // Only update the xDomain if it's still within the bounds of the data
-    if (movedDomain[0] >= minDate && movedDomain[1] <= maxDate) {
-      setXDomain(movedDomain);
-    }
-
-    if (timer.current) clearTimeout(timer.current);
-    timer.current = setTimeout(() => {moveTimeWindow(direction)}, 500);
-  };
-
-  const stopTimer = () => {
-    clearTimeout(timer.current);
-   }
-
   /**
    * 
    * to reset the zoom 
@@ -104,8 +73,6 @@ function Home({ tooltipOpen, tooltipData, tooltipLeft, tooltipTop, showTooltip, 
   };
 
   const onWheel = (event) => {
-//    event.preventDefault();
-//    const minZoomFactor = 1.25;
 
     const zoomFactor = 1 - event.deltaY * 0.001;
     const pointerX = event.clientX;
@@ -161,12 +128,95 @@ function Home({ tooltipOpen, tooltipData, tooltipLeft, tooltipTop, showTooltip, 
     return category === 'A' ? 'blue' : 'red';
   };
 
+  const changeScroll = () => { 
+    let style = document.body.style.overflow ;
+    document.body.style.overflow = (style === 'hidden') ? 'auto' : 'hidden';
+} 
+
+/**
+ * Function to handle button click event.
+ * 
+ * @param {*} btnEl 
+ * @returns 
+ */
+
+const clickAndHold = (btnEl) => {
+  let timerId;
+  const DURATION = 200;
+
+  const onMouseDown = () => {
+    timerId = setInterval(() => {
+      btnEl && btnEl.click();
+    }, DURATION);
+  };
+
+  const clearTimer = () => {
+    timerId && clearInterval(timerId);
+  };
+
+  btnEl.addEventListener("mousedown", onMouseDown);
+  btnEl.addEventListener("mouseup", clearTimer);
+  btnEl.addEventListener("mouseout", clearTimer);
+
+  return () => {
+    btnEl.removeEventListener("mousedown", onMouseDown);
+    btnEl.removeEventListener("mouseup", clearTimer);
+    btnEl.removeEventListener("mouseout", clearTimer);
+  };
+};
+
+const btnUpRef = useRef(null);
+const btnDownRef = useRef(null);
+const counter = useRef(0);
+
+useEffect(() => {
+  const removeListenerUp = clickAndHold(btnUpRef.current);
+  const removeListenerDown = clickAndHold(btnDownRef.current);
+  return () => {
+    removeListenerUp();
+    removeListenerDown();
+  };
+}, []);
+
+/**
+ * Function to move time window, left or right
+ * @param {*} param0 
+ */
+const moveTimeWindow = ({ target }) => {
+  counter.current++;
+  // setClickEventStr(`Clicking ${target.innerHTML}:${counter.current}`);
+
+  let direction = target.innerHTML == "Left" ? -1 : 1;
+
+  const moveByDays = 30;
+  const minDate = new Date("2018-01-01");
+  const maxDate = new Date("2024-01-01");
+  
+  const movedDomain = xDomain.map((date) => {
+    const newDate = new Date(date.valueOf());
+    newDate.setDate(date.getDate() + direction * moveByDays);
+
+    if (newDate < minDate || newDate > maxDate) {
+      return date;
+    }
+
+    return newDate;
+  });
+
+  // Only update the xDomain if it's still within the bounds of the data
+  if (movedDomain[0] >= minDate && movedDomain[1] <= maxDate) {
+    setXDomain(movedDomain);
+  }
+
+};
+
+////////////////////////////
   return (
     <Layout>
-    <div className="App" onWheel={onWheel}>
+    <div className="App" onWheel={onWheel} onMouseEnter={changeScroll} onMouseLeave={changeScroll}>
       <div className='svg-buttons-div'>
-        <button className='svg-buttons' onMouseDown={() => moveTimeWindow(-1)} onMouseUp={stopTimer}>Move Left</button>
-        <button className='svg-buttons' onMouseDown={() => moveTimeWindow(1) } onMouseUp={stopTimer} >Move Right</button>
+        <button id="svg-button-left1" className='svg-buttons' ref={btnUpRef} onClick={moveTimeWindow}>Left</button>
+        <button id="svg-button-right1" className='svg-buttons' ref={btnDownRef} onClick={moveTimeWindow}>Right</button>
         <button className='svg-buttons' onClick={() => resetTimeWindow(1)}>Reset</button>
       </div>
 
@@ -301,4 +351,3 @@ const colorArray = [
 }
 
 export default withTooltip(Home);
-

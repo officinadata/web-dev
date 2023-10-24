@@ -60,7 +60,7 @@ b.event-balloon-text-head{
   font-size: 14px;
   height: 36px;
   line-height: 27px;
-  min-width: 54px;
+  min-width: 100px;
   margin: 5px 5px 0px 0px;
   padding: 0 16px;
   text-align: center;
@@ -79,4 +79,23 @@ b.event-balloon-text-head{
 .svg-buttons:focus {
   border-color: #4285f4;
   outline: none;
+}
+
+#svg-button-left {
+    display: block;
+    float: left;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: -webkit-fill-available;
+    height: -webkit-fill-available;
+}
+#svg-button-right {
+    display: block;
+    float: left;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: -webkit-fill-available;
+    height: -webkit-fill-available;
 }
