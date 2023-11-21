@@ -29,6 +29,7 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
 
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -54,7 +55,56 @@
     <!-- Spinner End -->
     
     <noscript>You need to enable JavaScript to run this app.</noscript>
+     <!-- NAVBAR -->
+     <nav class="navbar navbar-expand navbar-dark"> 
+      <div class="container-fluid "> 
+        <a class="navbar-brand" href="./"> 
+          <img id="logo" src="images/logo.png" alt="logo" width="138" height="138" />
+        </a> 
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0"> 
+          <!-- NAVBAR LINKS -->
+          <li class="nav-item"> 
+            <a class="nav-link" href="/">About Us</a> 
+          </li> 
+          <li class="nav-item"> 
+            <a class="nav-link" href="/timeline">Timeline</a> 
+          </li> 
+          <li class="nav-item"> 
+            <a class="nav-link" href="/contribute">Contact Us</a> 
+          </li> 
+          <li class="nav-item"> 
+            <a class="nav-link" href="#">Event</a> 
+          </li> 
+          <li class="nav-item"> 
+            <a class="nav-link" href="#">Calendar</a> 
+          </li> 
+          <li class="nav-item"> 
+            <a class="nav-link" href="#">Media</a> 
+          </li> 
+          <li class="nav-item"> 
+            <a class="nav-link" href="#">Gallery</a> 
+          </li> 
+        </ul> 
+        <ul class="social-icons">
+          <li>
+            <img src="images/social.jpg" />
+          </li>
+        </ul>
+      </div> 
+    </nav>
     <div id="root"></div>
+
+    <div id="footer" class="container-fluid">
+      <div class="align-items-center justify-content-center" style="padding-bottom: 32px;">
+        <img class="social-footer" src="images/social-footer.png" alt="social" />
+      </div>
+      <div class="align-items-center justify-content-center" style="padding: 24px;">
+        Address: 16-1-455 Saleem Nagar | Phone: 0091-333-8471 | Email: info@weareone.org
+      </div>
+      <div class="align-items-center justify-content-center">
+        Copyright 2023 Weareone
+      </div>
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -72,7 +122,7 @@
 
     <!-- JavaScript Libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> 
     <script src="lib/wow/wow.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>

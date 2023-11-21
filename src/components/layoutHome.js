@@ -8,38 +8,11 @@ export default function Layout({ children }) {
 
   return (
     <>
-    <div className="container-fluid bg-white sticky-top">
-        <div className="container">
-            <nav className="navbar navbar-expand-lg bg-white navbar-light py-2 py-lg-0">
-                <a href="/" className="navbar-brand">
-                    <img className="img-fluid" src="img/logo.png" alt="Logo" />
-                </a>
-                <div className="navbar-toggler ms-auto me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <Search />
-                </div>
-                <button type="button" className="navbar-toggler ms-auto me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarCollapse">
-                    <div className="navbar-nav ms-auto">
-                        <a href="/" className="nav-item nav-link active">Home</a>
-                        <a href="/about" className="nav-item nav-link">About</a>
-                        <a href="/evaluate" className="nav-item nav-link">Evaluate</a>
-                        <a href="/contribute" className="nav-item nav-link">Contribute</a>
-                    </div>
-                    <div className="border-start ps-4 d-none d-lg-block">
-                        <Search />
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
-    
-    <div className="container-fluid px-0 mb-5">
+    <div className="container-fluid px-0 mb-5 carousel-container">
       <div id="header-carousel" className="carousel slide carousel-fade" data-bs-ride="carousel">
         <div className="carousel-inner">
-            <div className="carousel-item active" style={{height: 600+'px'}}>
-                <img className="w-100" src="img/carousel-1.jpg" alt="" />
+            <div className="carousel-item active" style={{height: 562+'px'}}>
+                <img className="w-100" src="images/DFSJ-WWW_02.gif" alt="" />
                 <div className="carousel-caption">
                     <div className="container">
                         <div className="row justify-content-center">
@@ -51,7 +24,9 @@ export default function Layout({ children }) {
         </div>
       </div>
     </div>
-    
+    <div>
+        <img id="sub-head" src="images/DFSJ-WWW_03.gif" style={{width: '100%'}}/>
+    </div>
     <div className="container-xxl py-5">
         <div className="container">
             <div className="row g-5">
@@ -62,18 +37,6 @@ export default function Layout({ children }) {
         </div>
     </div>
 
-    <div className="container-fluid copyright py-4">
-        <div className="container">
-            <div className="row">
-                <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a className="fw-medium" href="/">DaRe Project</a>, All Right Reserved.
-                </div>
-                <div className="col-md-6 text-center text-md-end">
-                    Designed By Dev team @ DaRe project.
-                </div>
-            </div>
-        </div>
-    </div>
     </>
   )
 }

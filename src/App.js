@@ -23,8 +23,8 @@ function App({ tooltipOpen, tooltipData, tooltipLeft, tooltipTop, showTooltip, h
       
         {/*<Navbar />*/}
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/about' element={<About />} exact />
+          <Route path='/timeline' element={<Home />} />
+          <Route path='/' element={<About />} exact />
           <Route path='/evaluate' element={<Evaluate />} exact />
           <Route path='/contribute' element={<Contribute />} exact />
           <Route path='/events/:id' element={<Events />} exact />

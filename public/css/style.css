@@ -167,7 +167,7 @@
     bottom: 0;
     display: flex;
     align-items: center;
-    background: rgba(136, 180, 78, .7);
+    background: rgba(52, 69, 30, .7);
     z-index: 1;
 }
 
@@ -507,6 +507,6 @@
 
 .btn-primary {
     color: #000;
-    background-color: #009845;
+    background-color: #6E9E34;
     border-color: #88b44e;
 }

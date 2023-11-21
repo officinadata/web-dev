@@ -213,6 +213,7 @@ const moveTimeWindow = ({ target }) => {
 ////////////////////////////
   return (
     <Layout>
+      
     <div className="App" onWheel={onWheel} onMouseEnter={changeScroll} onMouseLeave={changeScroll}>
       <div className='svg-buttons-div'>
         <button id="svg-button-left1" className='svg-buttons' ref={btnUpRef} onClick={moveTimeWindow}>Left</button>
@@ -332,6 +333,14 @@ const colorArray = [
       )}
     </div>
 
+    <div className="container text-center py-5">
+            <nav aria-label="breadcrumb animated slideInDown">
+                <ol className="breadcrumb justify-content-center mb-0">
+                    <li className="breadcrumb-item"><a href="/">Home</a></li>
+                    <li className="breadcrumb-item text-dark" aria-current="page">Timeline</li>
+                </ol>
+            </nav>
+        </div>
     <div className='current-event-display'>
       {currentEvent != null
       ? <Event event={
