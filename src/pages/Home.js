@@ -333,14 +333,6 @@ const colorArray = [
       )}
     </div>
 
-    <div className="container text-center py-5">
-            <nav aria-label="breadcrumb animated slideInDown">
-                <ol className="breadcrumb justify-content-center mb-0">
-                    <li className="breadcrumb-item"><a href="/">Home</a></li>
-                    <li className="breadcrumb-item text-dark" aria-current="page">Timeline</li>
-                </ol>
-            </nav>
-        </div>
     <div className='current-event-display'>
       {currentEvent != null
       ? <Event event={
