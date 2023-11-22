@@ -2,6 +2,16 @@ body {
     background-color: #F4EFDC;
 }
 
+.max-width {
+    max-width: 100%;
+}
+
+.bottom-green-border {
+    border-bottom-style: solid;
+    border-bottom-width: 10px;
+    border-bottom-color: #6E9E34;
+}
+
 #logo {
     z-index: 10;
     position: sticky;
@@ -58,6 +68,27 @@ body {
 .carousel-container {
     margin-bottom: 0rem !important;
 }
+
+
+.h1-home-section01 {
+    color: #19673A;
+    font-family: sans-serif;
+    margin-bottom: 18px;
+    font-weight: 500;
+}
+
+.h1-gallery {
+    margin-top: 38px;
+    color: #19673A;
+    font-family: sans-serif;
+}
+
+.text-home-section01 {
+    font-family: serif;
+    font-size: 19px;
+}
+
+
 #footer {
     padding: 64px 0px 64px 0px;
     border-top-style: solid;
