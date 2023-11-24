@@ -38,9 +38,12 @@ div.events{
     opacity: 25%;
 }
 
-.svg-buttons:hover{
+.svg-buttons:hover {
     opacity: 75%;
-    color: red;
+    /*color: red;*/
+    border-color: #dadce0;
+    box-shadow: rgba(0, 0, 0, .1) 0 1px 1px;
+    color: #202124;
 }
 
 b.event-balloon-text-head{
@@ -70,11 +73,6 @@ b.event-balloon-text-head{
   white-space: pre;
 }
 
-.svg-buttons:hover {
-  border-color: #dadce0;
-  box-shadow: rgba(0, 0, 0, .1) 0 1px 1px;
-  color: #202124;
-}
 
 .svg-buttons:focus {
   border-color: #4285f4;
